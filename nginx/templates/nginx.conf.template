@@ -39,6 +39,21 @@ server {
     # HSTS (ngx_http_headers_module is required) (63072000 seconds)
     add_header Strict-Transport-Security "max-age=63072000" always;
 
+    # Content Security Policy
+    add_header Content-Security-Policy "default-src 'self'; font-src https://fonts.gstatic.com; img-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; frame-ancestors 'none';";
+
+    # X-Frame-Options Disable
+    add_header X-Frame-Options "DENY";
+
+    # X-Content-Type-Options
+    add_header X-Content-Type-Options nosniff;
+
+    # X-XSS-Protection
+    add_header X-XSS-Protection "1; mode=block";
+
+    # Referrer-Policy
+    add_header Referrer-Policy "strict-origin";
+
     # OCSP stapling
     ssl_stapling on;
     ssl_stapling_verify on;
