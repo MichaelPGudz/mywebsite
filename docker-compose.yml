@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    # build:
+    #   context: "./nginx"
+    #   dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - NGINX_HOST=michaelgudz.net
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - nginx-network
+  api:
+    build:
+      context: './api/WebApi'
+      dockerfile: Dockerfile
+    expose:
+      - 5000
+    restart: unless-stopped
+    networks:
+      - nginx-network
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    restart: unless-stopped
+networks:
+  nginx-network:
+    driver: bridge
