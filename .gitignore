@@ -549,3 +549,7 @@ lerna-debug.log
 Thumbs.db
 
 /certbot/conf/
+
+# Ignore .env files except sample file
+*.env*
+!.env.sample
