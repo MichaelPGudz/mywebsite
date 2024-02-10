@@ -40,7 +40,7 @@ server {
     add_header Strict-Transport-Security "max-age=63072000" always;
 
     # Content Security Policy
-    add_header Content-Security-Policy "default-src 'self'; font-src https://fonts.gstatic.com; img-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; frame-ancestors 'none';";
+    add_header Content-Security-Policy "base-uri 'self'; default-src 'self'; font-src https://fonts.gstatic.com; img-src 'self'; object-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; frame-ancestors 'none';";
 
     # X-Frame-Options Disable
     add_header X-Frame-Options "DENY";
