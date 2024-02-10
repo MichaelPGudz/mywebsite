@@ -9,7 +9,7 @@ RUN dotnet publish -c $BUILD_CONFIGURATION -o /app/publish
 
 FROM nginx:1.24.0-alpine
 WORKDIR /app
-EXPOSE 8080
+EXPOSE ${BLAZOR_PORT}
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/publish/wwwroot /usr/share/nginx/html
 
