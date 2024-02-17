@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MainPage.Client\MainPage.Client.csproj" />
+    <ProjectReference Include="..\MainPageLibrary\MainPageLibrary.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>

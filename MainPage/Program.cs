@@ -1,5 +1,5 @@
-using MainPage.Client.Pages;
 using MainPage.Components;
+using MainPageLibrary;
 
 namespace MainPage
 {
@@ -13,6 +13,7 @@ namespace MainPage
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
+            builder.Services.AddScoped<BaseJsInterop>();
 
             var app = builder.Build();
 
