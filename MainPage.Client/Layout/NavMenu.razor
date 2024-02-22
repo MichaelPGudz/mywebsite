@@ -1,6 +1,4 @@
-﻿@inject IJSRuntime JSRuntime
-@inject BaseJsInterop jsFunctions
-@rendermode InteractiveServer
+﻿@inject BaseJsInterop jsFunction
 
 <nav class="navbar bg-gray-800 p-4 fixed w-full">
     <a class="navbar-brand text-3xl font-bold" href="/"><img src="images/favicon-32x32.png" /></a>
@@ -17,6 +15,6 @@
 @code {
     private async Task ScrollTo(string sectionId)
     {
-        await jsFunctions.ScrollToSection(sectionId);
+        await jsFunction.ScrollToSection(sectionId);
     }
 }

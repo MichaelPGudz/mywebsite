@@ -1,4 +1,4 @@
-﻿function scrollToSection(sectionId) {
+﻿export function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
 
     // Scroll smoothly to the section
