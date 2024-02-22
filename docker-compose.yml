@@ -2,26 +2,31 @@ version: '3.9'
 services:
   mainpage:
     build:
-        context: './mainpage'
-        dockerfile: Dockerfile
-#   nginx:
-#     image: nginx:stable-alpine
-#     volumes:
-#       - ./nginx/templates:/etc/nginx/templates
-#       - ./certbot/conf:/etc/letsencrypt
-#       - ./certbot/www:/var/www/certbot
-#     ports:
-#       - 80:80
-#       - 443:443
-#     environment:
-#       - NGINX_HOST=${HOST_NAME:?error}
-#       - BLAZOR_PORT=${BLAZOR_PORT:?error}
-#     restart: unless-stopped
-#     depends_on:
-#       - api
-#       - blazor
-#     networks:
-#       - nginx-network
+        context: .
+        dockerfile: MainPage/Dockerfile
+    expose:
+      - 5005
+    restart: unless-stopped
+    networks:
+        - nginx-network
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - NGINX_HOST=${HOST_NAME:?error}
+      # - BLAZOR_PORT=${BLAZOR_PORT:?error}
+    restart: unless-stopped
+    depends_on:
+      # - api
+      - mainpage
+    networks:
+      - nginx-network
 #   api:
 #     build:
 #       context: './api/WebApi'
@@ -31,12 +36,12 @@ services:
 #     restart: unless-stopped
 #     networks:
 #       - nginx-network
-#   certbot:
-#     image: certbot/certbot
-#     volumes:
-#       - ./certbot/conf:/etc/letsencrypt
-#       - ./certbot/www:/var/www/certbot
-#     restart: unless-stopped
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    restart: unless-stopped
 #   blazor:
 #     build:
 #       context: './BlazorApp/MainPage'
@@ -48,6 +53,6 @@ services:
 #       - BLAZOR_PORT=${BLAZOR_PORT:?error}
 #     networks:
 #     - nginx-network
-# networks:
-#   nginx-network:
-#     driver: bridge
+networks:
+  nginx-network:
+    driver: bridge

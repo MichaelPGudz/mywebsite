@@ -1,9 +1,5 @@
 upstream web-api {
-    server api:5000;
-}
-
-upstream wasm {
-    server blazor:${BLAZOR_PORT};
+    server mainpage:5005;
 }
 
 server {
@@ -66,26 +62,13 @@ server {
     #ssl_trusted_certificate /etc/letsencrypt/live/${NGINX_HOST}/chain.pem;
 
      location / {
-            proxy_pass         http://wasm;
+            proxy_pass         http://web-api;
             proxy_redirect     off;
             proxy_http_version 1.1;
             proxy_cache_bypass $http_upgrade;
             proxy_set_header   Upgrade $http_upgrade;
-            proxy_set_header   Connection keep-alive;
-            proxy_set_header   Host $host;
-            proxy_set_header   X-Real-IP $remote_addr;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   X-Forwarded-Proto $scheme;
-            proxy_set_header   X-Forwarded-Host $server_name;
-    }
-
-    location /api/ {
-            proxy_pass         http://web-api/;
-            proxy_redirect     off;
-            proxy_http_version 1.1;
-            proxy_cache_bypass $http_upgrade;
-            proxy_set_header   Upgrade $http_upgrade;
-            proxy_set_header   Connection keep-alive;
+            #proxy_set_header   Connection keep-alive;
+            proxy_set_header   Connection "Upgrade";
             proxy_set_header   Host $host;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
