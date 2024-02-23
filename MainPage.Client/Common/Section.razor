@@ -1,0 +1,13 @@
+﻿<div id="@IdType" class="section mt-16 p-8">
+    @ChildContent
+</div>
+
+
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string IdType { get; set; }
+}
