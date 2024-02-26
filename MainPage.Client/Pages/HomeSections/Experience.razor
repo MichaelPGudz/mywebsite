@@ -1,42 +1,25 @@
 ﻿<Section IdType="experience">
     <h2 class="text-4xl font-semibold mb-4">Experience</h2>
-    <div class="experience-item mb-4">
-        <h3 class="text-2xl font-semibold mb-2">Software Developer</h3>
-        <p class="text-gray-600">VSoft, Cracow (Remote) - December 2022 to Present</p>
-        <ul class="list-disc pl-5 pt-3">
-            <li>
-                Maintained an application that aggregates services from dozens of insurance
-                companies, facilitating the issuance of insurance policies and enabling users to
-                choose the best offer.
-            </li>
-            <li>
-                Delivered new features requested by the client, such as integration with new
-                policy engines to provide a wider range of offers.
-            </li>
-            <li>
-                Implemented a connection with an external service for a bank client, providing a
-                simpler and more convenient method for verifying people's identities.
-            </li>
-            <li>
-                Worked in the SCRUM methodology with a focus of 70% on features and 30% on
-                maintenance.
-            </li>
-            <li>
-                Technologies used include: .NET Framework 4.8/.NET6, Vue.js, Angular,
-                JavaScript, MSSQL, PowerShell, GIT, and Azure DevOps.
-            </li>
-        </ul>
-    </div>
-    <div class="experience-item mb-4">
-        <h3 class="text-2xl font-semibold mb-2">Junior Full Stack Developer</h3>
-        <p class="text-gray-600">PwC Poland, Warsaw (Remote) - February 2022 to November 2022</p>
-        <p>
-            Gained valuable experience in web development and contributed to the development of client projects.
-        </p>
-    </div>
+    <ExperienceItem jobTitle="@jobTitle" jobName="@jobName" jobPeriod="@jobPeriod" jobDescription="@jobDescription" />
+    <ExperienceItem jobTitle="Junior Full Stack Developer" jobName="PwC Poland, Warsaw (Remote)" jobPeriod="@jobPeriod" jobDescription="@(new[] {"Gained valuable experience in web development and contributed to the development of client projects."})" />
 </Section>
 
 
 @code {
-
+    private string jobTitle = "Software Developer";
+    private string jobName = "VSoft, Cracow (Remote)";
+    private string jobPeriod = "December 2022 to Present";
+    private IEnumerable<string> jobDescription = new[] {
+        @"Maintained an application that aggregates services from dozens of insurance
+                companies, facilitating the issuance of insurance policies and enabling users to
+                choose the best offer.",
+        @"Delivered new features requested by the client, such as integration with new
+                policy engines to provide a wider range of offers.",
+        @"Implemented a connection with an external service for a bank client, providing a
+                simpler and more convenient method for verifying people's identities.",
+        @"Worked in the SCRUM methodology with a focus of 70% on features and 30% on
+                maintenance.",
+        @"Technologies used include: .NET Framework 4.8/.NET6, Vue.js, Angular,
+                JavaScript, MSSQL, PowerShell, GIT, and Azure DevOps."
+    };
 }
