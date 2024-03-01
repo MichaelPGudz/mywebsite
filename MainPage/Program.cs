@@ -1,5 +1,7 @@
 using MainPage.Components;
+using MainPage.Infrastructure.Database;
 using MainPageLibrary;
+using Microsoft.EntityFrameworkCore;
 
 namespace MainPage
 {
@@ -14,6 +16,8 @@ namespace MainPage
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
             builder.Services.AddScoped<BaseJsInterop>();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MainPageConnetion")));
 
             var app = builder.Build();
 
