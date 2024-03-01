@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NginxProxy", "NginxProxy", 
 		nginx\templates\nginx.conf.template = nginx\templates\nginx.conf.template
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainPage.Domain", "MainPage.Domain\MainPage.Domain.csproj", "{E55012F6-1E24-4340-A628-23946B0665E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainPage.Domain", "MainPage.Domain\MainPage.Domain.csproj", "{E55012F6-1E24-4340-A628-23946B0665E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
