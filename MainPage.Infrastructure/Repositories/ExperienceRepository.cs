@@ -1,6 +1,7 @@
 ﻿using MainPage.Domain.Entities;
 using MainPage.Domain.Repositories;
 using MainPage.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace MainPage.Infrastructure.Repositories
 {
@@ -11,19 +12,10 @@ namespace MainPage.Infrastructure.Repositories
         {
             _context = context;
         }
-        public Task Add(Experience experience)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<IEnumerable<Experience>> GetAllAsync()
+        public async Task<List<Experience>> GetAllAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Experience> GetById(int id)
-        {
-            throw new NotImplementedException();
+            return await _context.Experiences.ToListAsync() ;
         }
     }
 }

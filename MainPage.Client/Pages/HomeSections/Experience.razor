@@ -1,9 +1,30 @@
-﻿<Section IdType="experience">
+﻿@using Exp = MainPage.Domain.Entities.Experience
+@inject IExperienceProvider provider
+
+<Section IdType="experience">
     <h2 class="text-4xl font-semibold mb-4">Experience</h2>
     <ExperienceItem jobTitle="@jobTitle" jobName="@jobName" jobPeriod="@jobPeriod" jobDescription="@jobDescription" />
     <ExperienceItem jobTitle="Junior Full Stack Developer" jobName="PwC Poland, Warsaw (Remote)" jobPeriod="@jobPeriod" jobDescription="@(new[] {"Gained valuable experience in web development and contributed to the development of client projects."})" />
 </Section>
 
+
+<ul>
+@if (experience == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    
+@foreach (var item in experience)
+{
+    <li>@item.JobTitle</li>
+    <li>@item.CompanyName</li>
+    <li>@item.Location</li>
+    <li>@item.LocationType</li>
+}
+}
+</ul>
 
 @code {
     private string jobTitle = "Software Developer";
@@ -22,4 +43,11 @@
         @"Technologies used include: .NET Framework 4.8/.NET6, Vue.js, Angular,
                 JavaScript, MSSQL, PowerShell, GIT, and Azure DevOps."
     };
+
+    IEnumerable<Exp>? experience = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        experience = await provider.FetchAsync();
+    }
 }

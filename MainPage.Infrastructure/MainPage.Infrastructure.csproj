@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MainPage.Application\MainPage.Application.csproj" />
-    <ProjectReference Include="..\MainPage.Domain\MainPage.Domain.csproj" />
   </ItemGroup>
 
 </Project>
