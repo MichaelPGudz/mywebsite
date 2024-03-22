@@ -11,7 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MainPage.Application\MainPage.Application.csproj" />
     <ProjectReference Include="..\MainPage.Client\MainPage.Client.csproj" />
     <ProjectReference Include="..\MainPage.Infrastructure\MainPage.Infrastructure.csproj" />
     <ProjectReference Include="..\MainPageLibrary\MainPageLibrary.csproj" />

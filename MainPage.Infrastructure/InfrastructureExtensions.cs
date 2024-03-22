@@ -1,5 +1,4 @@
 ﻿using MainPage.Domain.Services;
-using MainPage.Infrastructure.Client;
 using MainPage.Infrastructure.Database;
 using MainPage.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;

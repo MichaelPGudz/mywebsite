@@ -1,5 +1,5 @@
 ﻿using MainPage.Domain.Entities;
-using MainPage.Domain.Repositories;
+using MainPage.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MainPage.Controllers
@@ -8,9 +8,9 @@ namespace MainPage.Controllers
     [ApiController]
     public class ExperienceController : ControllerBase
     {
-        private readonly IExperienceRepository _repository;
+        private readonly IExperienceService _repository;
 
-        public ExperienceController(IExperienceRepository repository)
+        public ExperienceController(IExperienceService repository)
         {
             _repository = repository;
         }
@@ -18,7 +18,7 @@ namespace MainPage.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Experience>>> GetExperience()
         {
-            var experiences = await _repository.GetAllAsync();
+            var experiences = await _repository.GetAllExpieriences();
             if (experiences == null)
             {
                 return BadRequest();

@@ -1,11 +1,6 @@
-using MainPage.Application.Providers;
 using MainPage.Components;
-using MainPage.Domain.Repositories;
-using MainPage.Infrastructure.Database;
-using MainPage.Infrastructure.Providers;
-using MainPage.Infrastructure.Repositories;
+using MainPage.Infrastructure;
 using MainPageLibrary;
-using Microsoft.EntityFrameworkCore;
 
 namespace MainPage
 {
@@ -21,14 +16,10 @@ namespace MainPage
                 .AddInteractiveWebAssemblyComponents();
 
             builder.Services.AddControllers();
-
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("MainPageConnetion")));
             
-            builder.Services.AddScoped<BaseJsInterop>();
-            builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
-            builder.Services.AddScoped<IExperienceProvider, ExperienceProvider>();
-
+            builder.Services.AddDatabaseContext(builder.Configuration);
+            builder.Services.AddLibraryExtensions();
+            builder.Services.AddServerServices();
 
             var app = builder.Build();
 
