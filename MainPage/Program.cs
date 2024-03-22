@@ -1,5 +1,9 @@
+using MainPage.Application.Providers;
 using MainPage.Components;
+using MainPage.Domain.Repositories;
 using MainPage.Infrastructure.Database;
+using MainPage.Infrastructure.Providers;
+using MainPage.Infrastructure.Repositories;
 using MainPageLibrary;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,9 +19,16 @@ namespace MainPage
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
-            builder.Services.AddScoped<BaseJsInterop>();
+
+            builder.Services.AddControllers();
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("MainPageConnetion")));
+            
+            builder.Services.AddScoped<BaseJsInterop>();
+            builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
+            builder.Services.AddScoped<IExperienceProvider, ExperienceProvider>();
+
 
             var app = builder.Build();
 
@@ -35,6 +46,7 @@ namespace MainPage
 
             app.UseHttpsRedirection();
 
+            app.MapControllers();
             app.UseStaticFiles();
             app.UseAntiforgery();
 

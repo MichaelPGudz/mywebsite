@@ -4,8 +4,8 @@ namespace MainPage.Domain.Repositories
 {
     public interface IExperienceRepository
     {
-        Task<IEnumerable<Experience>> GetAllAsync();
-        Task<Experience> GetById(int id);
-        Task Add(Experience experience);
+        Task<List<Experience>> GetAllAsync();
+        //Task<Experience> GetById(int id);
+        //Task Add(Experience experience);
     }
 }
