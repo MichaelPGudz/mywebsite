@@ -4,7 +4,7 @@
     <ul class="list-disc pl-5 pt-3">
         @foreach (var item in JobDescription)
         {
-            <li>@item</li>
+            <li>@item.DescriptionElement</li>
         }
     </ul>
 </div>
@@ -30,7 +30,7 @@
     public DateTime? WorkEnd { get; set; }
 
     [Parameter]
-    public IEnumerable<string>? JobDescription { get; set; }
+    public IEnumerable<WorkDetail>? JobDescription { get; set; }
 
 
     private string DisplayRemote()

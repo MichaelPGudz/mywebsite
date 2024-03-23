@@ -15,7 +15,9 @@ namespace MainPage.Infrastructure.Services
 
         public async Task<IEnumerable<Experience>> GetAllExpieriences()
         {
-            return await _context.Experiences.ToListAsync();
+            return await _context.Experiences
+                .Include(e => e.Description)
+                .ToListAsync();
         }
     }
 }
