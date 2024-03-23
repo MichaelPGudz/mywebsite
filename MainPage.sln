@@ -18,9 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NginxProxy", "NginxProxy", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainPage.Domain", "MainPage.Domain\MainPage.Domain.csproj", "{E55012F6-1E24-4340-A628-23946B0665E7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainPage.Application", "MainPage.Application\MainPage.Application.csproj", "{085481B9-CF54-4DD1-85CB-236CE6A0ABAB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainPage.Infrastructure", "MainPage.Infrastructure\MainPage.Infrastructure.csproj", "{1DA1E94A-3AD6-4B04-BEE3-810AA9C5D56F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainPage.Infrastructure", "MainPage.Infrastructure\MainPage.Infrastructure.csproj", "{1DA1E94A-3AD6-4B04-BEE3-810AA9C5D56F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +46,6 @@ Global
 		{E55012F6-1E24-4340-A628-23946B0665E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E55012F6-1E24-4340-A628-23946B0665E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E55012F6-1E24-4340-A628-23946B0665E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{085481B9-CF54-4DD1-85CB-236CE6A0ABAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{085481B9-CF54-4DD1-85CB-236CE6A0ABAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{085481B9-CF54-4DD1-85CB-236CE6A0ABAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{085481B9-CF54-4DD1-85CB-236CE6A0ABAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1DA1E94A-3AD6-4B04-BEE3-810AA9C5D56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1DA1E94A-3AD6-4B04-BEE3-810AA9C5D56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DA1E94A-3AD6-4B04-BEE3-810AA9C5D56F}.Release|Any CPU.ActiveCfg = Release|Any CPU

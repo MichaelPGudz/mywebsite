@@ -1,4 +1,5 @@
 using MainPage.Components;
+using MainPage.Infrastructure;
 using MainPageLibrary;
 
 namespace MainPage
@@ -13,7 +14,12 @@ namespace MainPage
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
-            builder.Services.AddScoped<BaseJsInterop>();
+
+            builder.Services.AddControllers();
+            
+            builder.Services.AddDatabaseContext(builder.Configuration);
+            builder.Services.AddLibraryExtensions();
+            builder.Services.AddServerServices();
 
             var app = builder.Build();
 
@@ -31,6 +37,7 @@ namespace MainPage
 
             app.UseHttpsRedirection();
 
+            app.MapControllers();
             app.UseStaticFiles();
             app.UseAntiforgery();
 
