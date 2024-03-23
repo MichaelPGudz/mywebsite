@@ -1,34 +1,32 @@
 ﻿@using Exp = MainPage.Domain.Entities.Experience
-@inject IExperienceProvider provider
+@* @rendermode @(new InteractiveAutoRenderMode(prerender: false)) *@
+@inject IExperienceService service
 
 <Section IdType="experience">
     <h2 class="text-4xl font-semibold mb-4">Experience</h2>
-    <ExperienceItem jobTitle="@jobTitle" jobName="@jobName" jobPeriod="@jobPeriod" jobDescription="@jobDescription" />
-    <ExperienceItem jobTitle="Junior Full Stack Developer" jobName="PwC Poland, Warsaw (Remote)" jobPeriod="@jobPeriod" jobDescription="@(new[] {"Gained valuable experience in web development and contributed to the development of client projects."})" />
+    <ul>
+        @if (experience == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+
+            @foreach (var item in experience)
+            {
+                <ExperienceItem JobTitle="@item.JobTitle" CompanyName="@item.CompanyName"
+                                Location="@item.Location" IsRemote="@item.IsRemote"
+                                WorkStart="@item.StartDate" WorkEnd="@item.EndDate"
+                                JobDescription="@jobDescription" />
+            }
+        }
+    </ul>
 </Section>
 
 
-<ul>
-@if (experience == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    
-@foreach (var item in experience)
-{
-    <li>@item.JobTitle</li>
-    <li>@item.CompanyName</li>
-    <li>@item.Location</li>
-    <li>@item.LocationType</li>
-}
-}
-</ul>
+
 
 @code {
-    private string jobTitle = "Software Developer";
-    private string jobName = "VSoft, Cracow (Remote)";
     private string jobPeriod = "December 2022 to Present";
     private IEnumerable<string> jobDescription = new[] {
         @"Maintained an application that aggregates services from dozens of insurance
@@ -43,11 +41,10 @@ else
         @"Technologies used include: .NET Framework 4.8/.NET6, Vue.js, Angular,
                 JavaScript, MSSQL, PowerShell, GIT, and Azure DevOps."
     };
-
     IEnumerable<Exp>? experience = null;
 
     protected override async Task OnInitializedAsync()
     {
-        experience = await provider.FetchAsync();
+        experience = await service.GetAllExpieriences();
     }
 }
