@@ -27,21 +27,7 @@
 
 
 @code {
-    private string jobPeriod = "December 2022 to Present";
-    private IEnumerable<string> jobDescription = new[] {
-        @"Maintained an application that aggregates services from dozens of insurance
-                companies, facilitating the issuance of insurance policies and enabling users to
-                choose the best offer.",
-        @"Delivered new features requested by the client, such as integration with new
-                policy engines to provide a wider range of offers.",
-        @"Implemented a connection with an external service for a bank client, providing a
-                simpler and more convenient method for verifying people's identities.",
-        @"Worked in the SCRUM methodology with a focus of 70% on features and 30% on
-                maintenance.",
-        @"Technologies used include: .NET Framework 4.8/.NET6, Vue.js, Angular,
-                JavaScript, MSSQL, PowerShell, GIT, and Azure DevOps."
-    };
-    IEnumerable<Exp>? experience = null;
+    private IEnumerable<Exp>? experience = new List<Exp>();
 
     protected override async Task OnInitializedAsync()
     {
