@@ -6,24 +6,37 @@ namespace MainPage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExperienceController : ControllerBase
+    public class ExperiencesController : ControllerBase
     {
         private readonly IExperienceService _repository;
 
-        public ExperienceController(IExperienceService repository)
+        public ExperiencesController(IExperienceService repository)
         {
             _repository = repository;
         }
 
         [HttpGet]
+        [Route("~/api/experiences")]
         public async Task<ActionResult<IEnumerable<Experience>>> GetExperience()
         {
             var experiences = await _repository.GetAllExpieriences();
-            if (experiences == null)
+            if (experiences is null)
             {
                 return BadRequest();
             }
             return Ok(experiences);
+        }
+
+        [HttpGet]
+        [Route("~/api/skills")]
+        public async Task<ActionResult<IEnumerable<Experience>>> GetSkill()
+        {
+            var skills = await _repository.GetAllSkills();
+            if (skills is null)
+            {
+                return BadRequest();
+            }
+            return Ok(skills);
         }
     }
 }
