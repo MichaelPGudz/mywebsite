@@ -14,6 +14,8 @@ namespace MainPage.Infrastructure.Services
         }
 
         public async Task<IEnumerable<Experience>> GetAllExpieriences() =>
-            await _httpClient.GetFromJsonAsync<IEnumerable<Experience>>("api/Experience") ?? new List<Experience>();
+            await _httpClient.GetFromJsonAsync<IEnumerable<Experience>>("api/experiences") ?? new List<Experience>();  
+        public async Task<IEnumerable<Skill>> GetAllSkills() =>
+            await _httpClient.GetFromJsonAsync<IEnumerable<Skill>>("api/skills") ?? new List<Skill>();
     }
 }

@@ -7,17 +7,28 @@ namespace MainPage.Infrastructure.Services
 {
     public sealed class ServerExperienceService : IExperienceService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IDbContextFactory<ApplicationDbContext> _context;
         public ServerExperienceService(IDbContextFactory<ApplicationDbContext> factory)
         {
-            _context = factory.CreateDbContext();
+            _context = factory;
         }
 
         public async Task<IEnumerable<Experience>> GetAllExpieriences()
         {
-            return await _context.Experiences
+            using (var context = _context.CreateDbContext())
+            {
+
+            return await context.Experiences
                 .Include(e => e.Description)
                 .ToListAsync();
+            }
+        }    
+        public async Task<IEnumerable<Skill>> GetAllSkills()
+        {
+            using (var context = _context.CreateDbContext())
+            {
+                return await context.Skills.ToListAsync();
+            }
         }
     }
 }
