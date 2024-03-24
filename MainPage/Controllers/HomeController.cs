@@ -6,20 +6,20 @@ namespace MainPage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExperiencesController : ControllerBase
+    public class HomeController : ControllerBase
     {
-        private readonly IExperienceService _repository;
+        private readonly HomeService _service;
 
-        public ExperiencesController(IExperienceService repository)
+        public HomeController(HomeService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         [HttpGet]
-        [Route("~/api/experiences")]
+        [Route("experiences")]
         public async Task<ActionResult<IEnumerable<Experience>>> GetExperience()
         {
-            var experiences = await _repository.GetAllExpieriences();
+            var experiences = await _service.GetAllExpieriences();
             if (experiences is null)
             {
                 return BadRequest();
@@ -28,10 +28,10 @@ namespace MainPage.Controllers
         }
 
         [HttpGet]
-        [Route("~/api/skills")]
+        [Route("skills")]
         public async Task<ActionResult<IEnumerable<Experience>>> GetSkill()
         {
-            var skills = await _repository.GetAllSkills();
+            var skills = await _service.GetAllSkills();
             if (skills is null)
             {
                 return BadRequest();

@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MainPage.Infrastructure.Services
 {
-    public sealed class ServerExperienceService : IExperienceService
+    public sealed class ServerHomeService : HomeService
     {
-        private readonly IDbContextFactory<ApplicationDbContext> _context;
-        public ServerExperienceService(IDbContextFactory<ApplicationDbContext> factory)
+        private readonly IDbContextFactory<ApplicationDbContext> _dbContextFactory;
+        public ServerHomeService(IDbContextFactory<ApplicationDbContext> factory)
         {
-            _context = factory;
+            _dbContextFactory = factory;
         }
 
         public async Task<IEnumerable<Experience>> GetAllExpieriences()
         {
-            using (var context = _context.CreateDbContext())
+            using (var context = _dbContextFactory.CreateDbContext())
             {
 
             return await context.Experiences
@@ -25,7 +25,7 @@ namespace MainPage.Infrastructure.Services
         }    
         public async Task<IEnumerable<Skill>> GetAllSkills()
         {
-            using (var context = _context.CreateDbContext())
+            using (var context = _dbContextFactory.CreateDbContext())
             {
                 return await context.Skills.ToListAsync();
             }
