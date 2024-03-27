@@ -1,6 +1,6 @@
 ﻿@using Exp = MainPage.Domain.Entities.Experience
-@* @rendermode @(new InteractiveAutoRenderMode(prerender: false)) *@
-@inject IExperienceService service
+@rendermode @(new InteractiveAutoRenderMode(prerender: false))
+@inject HomeService service
 
 <Section IdType="experience">
     <h2 class="text-4xl font-semibold mb-4">Experience</h2>
@@ -11,13 +11,12 @@
         }
         else
         {
-
             @foreach (var item in experience)
             {
-                <ExperienceItem JobTitle="@item.JobTitle" CompanyName="@item.CompanyName"
+                <ExperienceItem @key="item" JobTitle="@item.JobTitle" CompanyName="@item.CompanyName"
                                 Location="@item.Location" IsRemote="@item.IsRemote"
                                 WorkStart="@item.StartDate" WorkEnd="@item.EndDate"
-                                JobDescription="@jobDescription" />
+                                JobDescription="@item.Description" />
             }
         }
     </ul>
@@ -27,21 +26,7 @@
 
 
 @code {
-    private string jobPeriod = "December 2022 to Present";
-    private IEnumerable<string> jobDescription = new[] {
-        @"Maintained an application that aggregates services from dozens of insurance
-                companies, facilitating the issuance of insurance policies and enabling users to
-                choose the best offer.",
-        @"Delivered new features requested by the client, such as integration with new
-                policy engines to provide a wider range of offers.",
-        @"Implemented a connection with an external service for a bank client, providing a
-                simpler and more convenient method for verifying people's identities.",
-        @"Worked in the SCRUM methodology with a focus of 70% on features and 30% on
-                maintenance.",
-        @"Technologies used include: .NET Framework 4.8/.NET6, Vue.js, Angular,
-                JavaScript, MSSQL, PowerShell, GIT, and Azure DevOps."
-    };
-    IEnumerable<Exp>? experience = null;
+    private IEnumerable<Exp>? experience = null;
 
     protected override async Task OnInitializedAsync()
     {

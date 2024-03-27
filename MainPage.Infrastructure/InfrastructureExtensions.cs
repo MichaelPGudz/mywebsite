@@ -14,10 +14,10 @@ namespace MainPage.Infrastructure
                     options.UseSqlServer(configuration.GetConnectionString("MainPageConnetion")));
 
         public static IServiceCollection AddServerServices(this IServiceCollection services) =>
-            services.AddScoped<IExperienceService, ServerExperienceService>();
+            services.AddScoped<HomeService, ServerHomeService>();
 
         public static IServiceCollection AddClientServices(this IServiceCollection services) =>
-            services.AddScoped<IExperienceService, ClientExperienceService>();
+            services.AddScoped<HomeService, ClientHomeService>();
 
     }
 }

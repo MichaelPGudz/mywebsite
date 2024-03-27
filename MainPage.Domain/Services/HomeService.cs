@@ -2,8 +2,9 @@
 
 namespace MainPage.Domain.Services
 {
-    public interface IExperienceService
+    public interface HomeService
     {
         Task<IEnumerable<Experience>> GetAllExpieriences();
+        Task<IEnumerable<Skill>> GetAllSkills();
     }
 }
