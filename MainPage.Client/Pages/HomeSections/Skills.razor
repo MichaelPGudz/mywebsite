@@ -3,20 +3,27 @@
 <Section IdType="skills">
     <h2 class="text-4xl font-semibold mb-4">Skills</h2>
     <ul class="skills-list flex flex-wrap">
-        @foreach (var item in skills)
+        @if (skills == null)
         {
-            <li class="bg-blue-500 text-white px-4 py-2 mr-2 mb-2 rounded">@item.Name</li>
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            @foreach (var item in skills)
+            {
+                <li @key="item" class="bg-blue-500 text-white px-4 py-2 mr-2 mb-2 rounded">@item.Name</li>
+            }
         }
     </ul>
 </Section>
 
 @code {
-    private IEnumerable<Skill>? skills = new List<Skill>();
+    private IEnumerable<Skill>? skills = null;
 
     protected override async Task OnInitializedAsync()
     {
         skills = await service.GetAllSkills();
-        
+
     }
 
 }

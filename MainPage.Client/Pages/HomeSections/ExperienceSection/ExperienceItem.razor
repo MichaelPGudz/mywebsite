@@ -4,7 +4,7 @@
     <ul class="list-disc pl-5 pt-3">
         @foreach (var item in JobDescription)
         {
-            <li>@item.DescriptionElement</li>
+            <li @key="item">@item.DescriptionElement</li>
         }
     </ul>
 </div>

@@ -1,5 +1,5 @@
 ﻿@using Exp = MainPage.Domain.Entities.Experience
-@* @rendermode @(new InteractiveAutoRenderMode(prerender: false)) *@
+@rendermode @(new InteractiveAutoRenderMode(prerender: false))
 @inject HomeService service
 
 <Section IdType="experience">
@@ -11,10 +11,9 @@
         }
         else
         {
-
             @foreach (var item in experience)
             {
-                <ExperienceItem JobTitle="@item.JobTitle" CompanyName="@item.CompanyName"
+                <ExperienceItem @key="item" JobTitle="@item.JobTitle" CompanyName="@item.CompanyName"
                                 Location="@item.Location" IsRemote="@item.IsRemote"
                                 WorkStart="@item.StartDate" WorkEnd="@item.EndDate"
                                 JobDescription="@item.Description" />
@@ -27,7 +26,7 @@
 
 
 @code {
-    private IEnumerable<Exp>? experience = new List<Exp>();
+    private IEnumerable<Exp>? experience = null;
 
     protected override async Task OnInitializedAsync()
     {
