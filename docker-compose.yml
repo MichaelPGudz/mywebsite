@@ -15,6 +15,7 @@ services:
     restart: unless-stopped
     networks:
         - nginx-network
+        - db-network
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     ports:
@@ -22,6 +23,8 @@ services:
     environment:
     - ACCEPT_EULA=Y
     # - SA_PASSWORD=
+    networks:
+        - db-network
   nginx:
     image: nginx:stable-alpine
     volumes:
@@ -47,3 +50,5 @@ services:
 networks:
   nginx-network:
     driver: bridge
+  db-network:
+    driver: bridge  
