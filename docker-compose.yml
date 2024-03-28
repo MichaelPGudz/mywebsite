@@ -6,9 +6,22 @@ services:
       dockerfile: MainPage/Dockerfile
     expose:
       - 5005
+    depends_on:
+      - db
+    # environment:
+    #   - DB_HOST=
+    #   - DB_NAME=
+    #   - DB_SA_PASSWORD=
     restart: unless-stopped
     networks:
         - nginx-network
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+    - 1433:1433
+    environment:
+    - ACCEPT_EULA=Y
+    # - SA_PASSWORD=
   nginx:
     image: nginx:stable-alpine
     volumes:
