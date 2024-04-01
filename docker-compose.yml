@@ -19,6 +19,7 @@ services:
   db:
     container_name: ${DB_HOST}
     image: mcr.microsoft.com/mssql/server:2022-latest
+    user: ${DB_USER}
     volumes:
       - ./db:/var/opt/mssql
     ports:
