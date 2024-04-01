@@ -19,5 +19,13 @@ namespace MainPage.Infrastructure
         public static IServiceCollection AddClientServices(this IServiceCollection services) =>
             services.AddScoped<HomeService, ClientHomeService>();
 
+        public static void RunMigrations(this IServiceProvider provider)
+        {
+            using (var scope = provider.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                db.Database.Migrate();
+            }
+        }
     }
 }

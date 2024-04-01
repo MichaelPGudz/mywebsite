@@ -22,6 +22,8 @@ namespace MainPage
             builder.Services.AddServerServices();
 
             var app = builder.Build();
+            
+            app.Services.RunMigrations();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
