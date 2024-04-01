@@ -548,8 +548,20 @@ lerna-debug.log
 .DS_Store
 Thumbs.db
 
+#SSL Certificate
 /certbot/conf/
 
 # Ignore .env files except sample file
 *.env*
 !.env.sample
+
+#Database files
+/db/.system/
+/db/data/
+/db/log/
+/db/secrets/
+*.bak
+*.bin
+*.mdf
+*.ldf
+*.hiv
