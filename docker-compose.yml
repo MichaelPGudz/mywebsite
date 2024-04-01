@@ -6,9 +6,28 @@ services:
       dockerfile: MainPage/Dockerfile
     expose:
       - 5005
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_SA_PASSWORD=${DB_SA_PASSWORD}
     restart: unless-stopped
     networks:
         - nginx-network
+        - db-network
+  db:
+    container_name: ${DB_HOST}
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    volumes:
+      - ./db:/var/opt/mssql
+    ports:
+    - 1433:1433
+    environment:
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=${SA_PASSWORD}
+    networks:
+        - db-network
   nginx:
     image: nginx:stable-alpine
     volumes:
@@ -34,3 +53,5 @@ services:
 networks:
   nginx-network:
     driver: bridge
+  db-network:
+    driver: bridge  
