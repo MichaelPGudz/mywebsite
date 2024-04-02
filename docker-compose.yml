@@ -12,6 +12,7 @@ services:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
       - DB_SA_PASSWORD=${DB_SA_PASSWORD}
+      - ConnectionStrings__MainPageDatabase=${DB_CONNECTION_STRING}
     restart: unless-stopped
     networks:
         - nginx-network

@@ -11,7 +11,7 @@ namespace MainPage.Infrastructure
     {
         public static IServiceCollection AddDatabaseContext(this IServiceCollection services, IConfiguration configuration) =>
             services.AddDbContextFactory<ApplicationDbContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString("MainPageConnetion")));
+                    options.UseSqlServer(configuration.GetConnectionString("MainPageDatabase")));
 
         public static IServiceCollection AddServerServices(this IServiceCollection services) =>
             services.AddScoped<HomeService, ServerHomeService>();
