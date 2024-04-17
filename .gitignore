@@ -556,10 +556,9 @@ Thumbs.db
 !.env.sample
 
 #Database files
-/db/.system/
-/db/data/
-/db/log/
-/db/secrets/
+/db/
+!/db/*.sql
+!/db/*.sh
 *.bak
 *.bin
 *.mdf
