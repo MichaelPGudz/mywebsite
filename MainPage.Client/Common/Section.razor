@@ -1,6 +1,6 @@
-﻿<div id="@IdType" class="section mt-16 p-8">
+﻿<section id="@IdType" class="@ClassTypes">
     @ChildContent
-</div>
+</section>
 
 
 
@@ -10,4 +10,8 @@
 
     [Parameter]
     public string IdType { get; set; }
+
+    [Parameter]
+    public string ClassTypes { get; set; }
+    @*section p-8 relative pt-[calc(20vh-75px)] pb-32 *@
 }
